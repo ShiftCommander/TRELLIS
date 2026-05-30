@@ -1,0 +1,60 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "platform_linux",
+      "ok": false,
+      "detail": "darwin"
+    },
+    {
+      "name": "nvidia-smi",
+      "ok": false,
+      "detail": "not found"
+    },
+    {
+      "name": "blender",
+      "ok": false,
+      "detail": "not found"
+    },
+    {
+      "name": "conda",
+      "ok": false,
+      "detail": "not found"
+    },
+    {
+      "name": "nvidia_smi_query",
+      "ok": false,
+      "detail": "[Errno 2] No such file or directory: 'nvidia-smi'"
+    },
+    {
+      "name": "python_import:torch",
+      "ok": false,
+      "detail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import torch; print('ok')\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'torch'"
+    },
+    {
+      "name": "python_import:imageio",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "python_import:PIL",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "python_import:numpy",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "name": "torch_cuda_check",
+      "ok": false,
+      "detail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import torch; print('cuda_available=' + str(torch.cuda.is_available())); print('device_count=' + str(torch.cuda.device_count()))\n    ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'torch'"
+    },
+    {
+      "name": "python_import:trellis",
+      "ok": false,
+      "detail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import trellis; print('ok')\n    ^^^^^^^^^^^^^^\n  File \"/Users/tim/Code environments/TRELLIS/trellis/__init__.py\", line 3, in <module>\n    from . import pipelines\n  File \"/Users/tim/Code environments/TRELLIS/trellis/pipelines/__init__.py\", line 1, in <module>\n    from . import samplers\n  File \"/Users/tim/Code environments/TRELLIS/trellis/pipelines/samplers/__init__.py\", line 2, in <module>\n    from .flow_euler import FlowEulerSampler, FlowEulerCfgSampler, FlowEulerGuidanceIntervalSampler\n  File \"/Users/tim/Code environments/TRELLIS/trellis/pipelines/samplers/flow_euler.py\", line 2, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+    }
+  ]
+}
