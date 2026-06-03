@@ -1,5 +1,7 @@
 # Avatar 3D Pipeline Runbook
 
+Pipeline choice is documented in [avatar_pipeline_decision.md](avatar_pipeline_decision.md).
+
 This runbook executes the full plan for:
 - Source image: `/Users/tim/Desktop/avatar-man-1 (1).png`
 - High quality texture: `2048`
@@ -8,6 +10,7 @@ This runbook executes the full plan for:
 ## 1) Prepare Linux GPU environment
 
 Use a Linux machine with NVIDIA GPU (>=16 GB VRAM), CUDA toolchain, and Python 3.10+.
+For free cloud runs, use the Kaggle or Colab quickstart instead of trying to run this on macOS.
 
 From repo root (recommended):
 

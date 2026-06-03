@@ -14,7 +14,7 @@ fi
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-. ./setup.sh --new-env --demo --xformers --flash-attn --diffoctreerast --spconv --mipgaussian --kaolin --nvdiffrast
+. ./setup.sh --new-env --basic --demo --xformers --diffoctreerast --spconv --mipgaussian --kaolin --nvdiffrast
 eval "$(conda shell.bash hook)"
 conda activate trellis
 python -m pip install --upgrade pip

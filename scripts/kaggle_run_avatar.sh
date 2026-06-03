@@ -4,7 +4,7 @@ set -euo pipefail
 # Usage:
 #   bash scripts/kaggle_run_avatar.sh "/kaggle/input/<dataset>/avatar-man-1.png"
 # Optional env:
-#   TRELLIS_REPO_URL (default: https://github.com/microsoft/TRELLIS.git)
+#   TRELLIS_REPO_URL (default: https://github.com/ShiftCommander/TRELLIS.git)
 #   TRELLIS_BRANCH   (default: main)
 #   OUT_DIR          (default: /kaggle/working/outputs/avatar-man-1)
 #   TEXTURE_SIZE     (default: 2048)
@@ -17,7 +17,7 @@ if [[ -z "$INPUT_IMAGE" ]]; then
   exit 1
 fi
 
-TRELLIS_REPO_URL="${TRELLIS_REPO_URL:-https://github.com/microsoft/TRELLIS.git}"
+TRELLIS_REPO_URL="${TRELLIS_REPO_URL:-https://github.com/ShiftCommander/TRELLIS.git}"
 TRELLIS_BRANCH="${TRELLIS_BRANCH:-main}"
 OUT_DIR="${OUT_DIR:-/kaggle/working/outputs/avatar-man-1}"
 TEXTURE_SIZE="${TEXTURE_SIZE:-2048}"
@@ -33,7 +33,8 @@ cd "$REPO_DIR"
 
 echo "[2/5] Install dependencies"
 # Kaggle usually has no conda. Use setup without --new-env.
-. ./setup.sh --demo --xformers --diffoctreerast --spconv --mipgaussian --kaolin --nvdiffrast || true
+python3 -m pip install torch==2.4.0 torchvision==0.19.0 --index-url https://download.pytorch.org/whl/cu121
+. ./setup.sh --basic --demo --xformers --diffoctreerast --spconv --mipgaussian --kaolin --nvdiffrast
 python3 -m pip install --upgrade pip
 python3 -m pip install imageio pillow numpy
 
@@ -44,7 +45,7 @@ fi
 
 echo "[4/5] Run avatar pipeline"
 chmod +x scripts/*.sh || true
-SKIP_PREFLIGHT="$SKIP_PREFLIGHT" ./scripts/run_avatar_pipeline.sh "$INPUT_IMAGE" "$OUT_DIR" "$TEXTURE_SIZE"
+PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}" ATTN_BACKEND="${ATTN_BACKEND:-xformers}" SKIP_PREFLIGHT="$SKIP_PREFLIGHT" ./scripts/run_avatar_pipeline.sh "$INPUT_IMAGE" "$OUT_DIR" "$TEXTURE_SIZE"
 
 echo "[5/5] Collect outputs"
 mkdir -p /kaggle/working/final_delivery

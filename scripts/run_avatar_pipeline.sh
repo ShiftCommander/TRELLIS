@@ -9,6 +9,10 @@ OUT_DIR="${2:-outputs/avatar-man-1}"
 TEXTURE_SIZE="${3:-2048}"
 SKIP_PREFLIGHT="${SKIP_PREFLIGHT:-0}"
 
+export ATTN_BACKEND="${ATTN_BACKEND:-xformers}"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+export SPCONV_ALGO="${SPCONV_ALGO:-native}"
+
 mkdir -p assets/custom "$OUT_DIR/textures"
 
 PYTHON_BIN="python3"
